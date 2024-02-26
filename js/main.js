@@ -1,41 +1,45 @@
+import Bird from "./bird.js";
+import {globalConstants as global} from "./constants.js";
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const CANVAS_WIDTH = canvas.width = 405;
-const CANVAS_HEIGHT = canvas.height = 720;
-
-let x = 75;
-let y = (CANVAS_HEIGHT - 0.5 * CANVAS_WIDTH)/ 2;
-const v0 = -20;
-const g = 1;
 let gameFrame = 0;
-let jump_y = y;   
 
-const startJump = () => {
-    jump_y = y
-    gameFrame = 0; 
+const bird = new Bird(global.CANVAS_WIDTH / 10, global.CANVAS_HEIGHT / 2, -18);
+
+//Check if bird collides
+
+const checkCollision = () => {
+    return bird.y > global.CANVAS_HEIGHT; 
 }
 
-const jump = (y0, t) => {
-    const v = v0 + g*t;
-    y = y0 + v0*t + 0.5 * t * t * g;
-    return y;
-}
-
-// Agregar event listener para la tecla de espacio
-document.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-        startJump();
-    }
-});
+//Main loop
 
 const main = () => {
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    ctx.fillRect(x, y, 150, 110);
-
-    y = jump(jump_y, gameFrame);
-    gameFrame++;
-
+    ctx.clearRect(0, 0, global.CANVAS_WIDTH, global.CANVAS_HEIGHT);
+    bird.draw(ctx);
+    
+    if(checkCollision()) return;
+    bird.update(gameFrame);
+    
+    gameFrame = (gameFrame + 1) % 6000; //Autoreset
     window.requestAnimationFrame(main);
 }
 main();
+
+//Event Listeners
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === "Space" && !bird.isJumping) {
+        bird.jump();
+        bird.isJumping = true;
+        gameFrame = 0;
+    }
+});
+
+document.addEventListener("keyup", (event) => {
+    if (event.code === "Space") {
+        bird.isJumping = false;
+    }
+});
