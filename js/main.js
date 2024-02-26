@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 
 let gameFrame = 0;
 
-const bird = new Bird(global.CANVAS_WIDTH / 10, global.CANVAS_HEIGHT / 2, -18);
+const bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, -18);
 
 //Check if bird collides
 
