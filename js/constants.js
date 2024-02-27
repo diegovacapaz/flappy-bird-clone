@@ -7,7 +7,8 @@ canvas.height = 608;
 const globalConstants = {
     GRAVITY: 1,
     CANVAS_WIDTH: canvas.width,
-    CANVAS_HEIGHT: canvas.height
+    CANVAS_HEIGHT: canvas.height,
+    BIRD_JUMP_IMPULSE: -17
 }
 
 export {globalConstants};

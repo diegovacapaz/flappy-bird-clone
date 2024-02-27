@@ -3,6 +3,7 @@ import {globalConstants as global} from "./constants.js";
 class Obstacle {
     constructor() {
         this.x = global.CANVAS_WIDTH;
+        this.wasSurpassed = false;
         this.GAP = 220;
         this.WIDTH = 60;
         this.v = -2;
