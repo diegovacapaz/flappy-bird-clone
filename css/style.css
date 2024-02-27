@@ -3,6 +3,7 @@ body {
 }
 
 .center_container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,4 +13,11 @@ body {
     border: #bbb solid 1px;
     width: 342px;
     height: 608px;
+}
+
+#scoreboard {
+    position: absolute;
+    top: 20px;
+    color: white;
+    font-size: 40px;
 }
