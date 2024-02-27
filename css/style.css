@@ -17,7 +17,23 @@ body {
 
 #scoreboard {
     position: absolute;
-    top: 20px;
+    top: 5%;
     color: white;
     font-size: 40px;
+}
+
+#game_over {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    top: 40%;
+    color: white;
+    font-size: 40px;
+}
+
+#retry {
+    width: 50%;
+    padding: 5px 0;
 }

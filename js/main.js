@@ -5,12 +5,14 @@ import {globalConstants as global} from "./constants.js";
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const scoreboard = document.getElementById("scoreboard");
+const gameOverScreen= document.getElementById("game_over");
+const retryButton= document.getElementById("retry");
 
 let gameFrame = 0;
 let obstacles = [];
 let score = 0;
 
-const bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
+let bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
 
 
 const generateObstacles = () => {
@@ -31,8 +33,25 @@ const checkAndUpdateScore = (obstacle) => {
     if((obstacle.x + obstacle.WIDTH < bird.x) && !obstacle.wasSurpassed){
         obstacle.wasSurpassed = true;
         score++;
-        scoreboard.innerHTML = score;
+        scoreboard.innerHTML = score; 
     };
+}
+
+//Reset the game
+const resetGame = () => {
+    gameOverScreen.style.display = "none";
+    score = 0;
+    scoreboard.innerHTML = score;
+    gameFrame = 0;
+    obstacles = [];
+    generateObstacles(); 
+    bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
+    main();
+}
+
+//Game over
+const showGameOver = () => {
+    gameOverScreen.style.display = "flex";
 }
 
 //Main loop
@@ -45,7 +64,10 @@ const main = () => {
 
     for(let obstacle of obstacles){
         checkAndUpdateScore(obstacle);
-        if(checkObstacleCollision(obstacle)) return;
+        if(checkObstacleCollision(obstacle)){
+            showGameOver();
+            return;
+        }
     }
 
     bird.update(gameFrame);
@@ -71,4 +93,8 @@ document.addEventListener("keyup", (event) => {
     if (event.code === "Space") {
         bird.isJumping = false;
     }
+});
+
+retryButton.addEventListener("click", (event) => {
+    resetGame();
 });
