@@ -4,8 +4,8 @@ class Obstacle {
     constructor() {
         this.x = global.CANVAS_WIDTH;
         this.GAP = 220;
-        this.WIDTH = 70;
-        this.VELOCITY = -5;
+        this.WIDTH = 60;
+        this.v = -2;
         this.GAP_HEIGHT = (Math.random() * (global.CANVAS_HEIGHT - 1.5 * this.GAP)) + this.GAP/2;
     }
 
@@ -15,7 +15,11 @@ class Obstacle {
     }
 
     update(){
-        this.x += this.VELOCITY;
+        this.x += this.v;
+    }
+
+    speedUp(){
+        this.v *= 1.15;
     }
 }
 

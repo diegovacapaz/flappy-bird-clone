@@ -6,7 +6,6 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 let gameFrame = 0;
-let frame = 0;
 let obstacles = [];
 
 const bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, -18);
@@ -14,25 +13,30 @@ const bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, -18)
 
 const generateObstacles = () => {
     if(obstacles.length === 0 || obstacles[obstacles.length - 1].x < global.CANVAS_WIDTH / 6) obstacles.push(new Obstacle());
-    //Clean obsolete obstacles
+    if(obstacles[0].x + obstacles[0].WIDTH < 0) obstacles.splice(0, 1);
 }
 generateObstacles();
 //Check if bird collides
 
-const checkCollision = () => {
-    return bird.y > global.CANVAS_HEIGHT; 
+const checkObstacleCollision = (obstacle) => {
+    const lateralCollision = (bird.x < obstacle.x + obstacle.WIDTH) && (bird.x + bird.WIDTH > obstacle.x);
+    const verticalCollision = (bird.y < obstacle.GAP_HEIGHT) || (bird.y + bird.HEIGHT > obstacle.GAP_HEIGHT + obstacle.GAP);
+    return lateralCollision && verticalCollision;
 }
 
 //Main loop
 
 const main = () => {
     ctx.clearRect(0, 0, global.CANVAS_WIDTH, global.CANVAS_HEIGHT);
-
     generateObstacles();
+    console.log(obstacles.length)
     bird.draw(ctx);
     obstacles.forEach(obstacle => obstacle.draw(ctx));
 
-    // if(checkCollision()) return;
+    for(let obstacle of obstacles){
+        if(checkObstacleCollision(obstacle)) return;
+    }
+
     bird.update(gameFrame);
     obstacles.forEach(obstacle => obstacle.update());
     
