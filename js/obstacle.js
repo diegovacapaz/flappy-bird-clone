@@ -1,4 +1,4 @@
-import {globalConstants as global, globalConstants} from "./constants.js";
+import {globalConstants as global} from "./constants.js";
 
 class Obstacle {
     constructor() {
@@ -11,8 +11,8 @@ class Obstacle {
     }
 
     draw(ctx) {
-        ctx.drawImage(globalConstants.PIPES_IMAGE, 52, 0, 52, 640, this.x, this.GAP_HEIGHT - 640, this.WIDTH, 640);
-        ctx.drawImage(globalConstants.PIPES_IMAGE, 0, 0, 52, 640, this.x, this.GAP_HEIGHT + this.GAP, this.WIDTH, 640);
+        ctx.drawImage(global.PIPES_IMAGE, 52, 0, 52, 640, this.x, this.GAP_HEIGHT - 640, this.WIDTH, 640);
+        ctx.drawImage(global.PIPES_IMAGE, 0, 0, 52, 640, this.x, this.GAP_HEIGHT + this.GAP, this.WIDTH, 640);
     }
 
     update(){

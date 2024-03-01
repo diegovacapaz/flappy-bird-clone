@@ -8,6 +8,7 @@ const scoreboard = document.getElementById("scoreboard");
 const gameOverScreen= document.getElementById("game_over");
 const retryButton= document.getElementById("retry");
 
+let jumpFrame = 0;
 let gameFrame = 0;
 let obstacles = [];
 let score = 0;
@@ -42,6 +43,7 @@ const resetGame = () => {
     gameOverScreen.style.display = "none";
     score = 0;
     scoreboard.innerHTML = score;
+    jumpFrame = 0;
     gameFrame = 0;
     obstacles = [];
     generateObstacles(); 
@@ -59,7 +61,7 @@ const showGameOver = () => {
 const main = () => {
     ctx.clearRect(0, 0, global.CANVAS_WIDTH, global.CANVAS_HEIGHT);
     generateObstacles();
-    bird.draw(ctx);
+    bird.draw(ctx, gameFrame);
     obstacles.forEach(obstacle => obstacle.draw(ctx));
 
     for(let obstacle of obstacles){
@@ -70,10 +72,11 @@ const main = () => {
         }
     }
 
-    bird.update(gameFrame);
+    bird.update(jumpFrame);
     obstacles.forEach(obstacle => obstacle.update());
     
-    gameFrame = (gameFrame + 1) % 6000; //Autoreset
+    jumpFrame = (jumpFrame + 1) % 6000; //Autoreset
+    gameFrame = (gameFrame + 1) % 4000; //Autoreset
 
     window.requestAnimationFrame(main);
 }
@@ -85,7 +88,7 @@ document.addEventListener("keydown", (event) => {
     if (event.code === "Space" && !bird.isJumping) {
         bird.jump();
         bird.isJumping = true;
-        gameFrame = 0;
+        jumpFrame = 0;
     }
 });
 

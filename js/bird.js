@@ -9,10 +9,17 @@ class Bird {
         this.JUMP_IMPULSE = jumpImpulse; //jump impulse velocity
         this.lastJumpY = this.y; //height of last jump
         this.isJumping = false; //for avoid automatic jump
+        this.sprite = 0;
+        this.staggerFrame = 5;
     }
 
-    draw(ctx){
-        ctx.fillRect(this.x, this.y, this.WIDTH, this.HEIGHT);
+    draw(ctx, frame){
+        // ctx.fillRect(this.x, this.y, this.WIDTH, this.HEIGHT);
+        ctx.drawImage(global.BIRD_IMAGE, 36 * this.sprite, 0, 34, 24, this.x, this.y, this.WIDTH, this.HEIGHT);
+        if(frame % this.staggerFrame == 0){
+            if(this.sprite < 3) this.sprite++;
+            else this.sprite = 0;
+        }
     }
 
     jump(){
