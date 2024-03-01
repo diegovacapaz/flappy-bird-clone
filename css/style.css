@@ -11,15 +11,8 @@ body {
 
 #canvas {
     border: #bbb solid 1px;
-    width: 342px;
-    height: 608px;
-}
-
-#scoreboard {
-    position: absolute;
-    top: 5%;
-    color: white;
-    font-size: 40px;
+    width: 400px;
+    height: 720px;
 }
 
 #game_over {
@@ -31,6 +24,14 @@ body {
     top: 40%;
     color: white;
     font-size: 40px;
+}
+
+#game_over-img{
+    width: 100%;
+}
+
+#retryButton {
+    width: 50%;
 }
 
 #retry {

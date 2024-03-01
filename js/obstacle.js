@@ -7,12 +7,12 @@ class Obstacle {
         this.GAP = 220;
         this.WIDTH = 60;
         this.v = -2;
-        this.GAP_HEIGHT = (Math.random() * (global.CANVAS_HEIGHT - 1.5 * this.GAP)) + this.GAP/2;
+        this.GAP_HEIGHT = (Math.random() * (global.CANVAS_HEIGHT - 2 * this.GAP)) + this.GAP/2;
     }
 
     draw(ctx) {
-        ctx.fillRect(this.x, 0, this.WIDTH, this.GAP_HEIGHT);
-        ctx.fillRect(this.x, this.GAP_HEIGHT + this.GAP, this.WIDTH, global.CANVAS_HEIGHT - this.GAP_HEIGHT - this.GAP);
+        ctx.drawImage(global.PIPES_IMAGE, 52, 0, 52, 640, this.x, this.GAP_HEIGHT - 640, this.WIDTH, 640);
+        ctx.drawImage(global.PIPES_IMAGE, 0, 0, 52, 640, this.x, this.GAP_HEIGHT + this.GAP, this.WIDTH, 640);
     }
 
     update(){
