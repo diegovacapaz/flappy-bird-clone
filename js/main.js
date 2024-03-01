@@ -123,11 +123,16 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
-document.addEventListener("click", (event) => {
-    if(!gameOver){
-        bird.isJumping = true;
+document.addEventListener("mousedown", (event) => {
+    if(!gameOver && !bird.isJumping){
         bird.jump();
         jumpFrame = 0;
+        bird.isJumping = true;
+    }
+});
+
+document.addEventListener("mouseup", (event) => {
+    if (!gameOver) {
         bird.isJumping = false;
     }
 });
