@@ -7,7 +7,7 @@ class Obstacle {
         this.GAP = 220;
         this.WIDTH = 60;
         this.v = -2;
-        this.GAP_HEIGHT = (Math.random() * (global.CANVAS_HEIGHT - 1.5 * this.GAP)) + this.GAP/2;
+        this.GAP_HEIGHT = (Math.random() * (global.CANVAS_HEIGHT - 2 * this.GAP)) + this.GAP/2;
     }
 
     draw(ctx) {

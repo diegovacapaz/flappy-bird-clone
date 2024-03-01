@@ -1,14 +1,14 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 342;
-canvas.height = 608;
+canvas.width = 400;
+canvas.height = 720;
 
 const globalConstants = {
     GRAVITY: 1,
     CANVAS_WIDTH: canvas.width,
     CANVAS_HEIGHT: canvas.height,
-    BIRD_JUMP_IMPULSE: -17
+    BIRD_JUMP_IMPULSE: -16.5 
 }
 
 export {globalConstants};

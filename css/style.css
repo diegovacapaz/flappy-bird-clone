@@ -11,8 +11,8 @@ body {
 
 #canvas {
     border: #bbb solid 1px;
-    width: 342px;
-    height: 608px;
+    width: 400px;
+    height: 720px;
 }
 
 #scoreboard {
