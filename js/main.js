@@ -1,5 +1,6 @@
 import Bird from "./bird.js";
 import Obstacle from "./obstacle.js";
+import Background from "./background.js";
 import {globalConstants as global} from "./constants.js";
 
 const canvas = document.getElementById("canvas");
@@ -14,7 +15,7 @@ let obstacles = [];
 let score = 0;
 
 let bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
-
+let background = new Background();
 
 const generateObstacles = () => {
     if(obstacles.length === 0 || obstacles[obstacles.length - 1].x < global.CANVAS_WIDTH / 6) obstacles.push(new Obstacle());
@@ -46,7 +47,8 @@ const resetGame = () => {
     jumpFrame = 0;
     gameFrame = 0;
     obstacles = [];
-    generateObstacles(); 
+    generateObstacles();
+    background = new Background();
     bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
     main();
 }
@@ -61,6 +63,7 @@ const showGameOver = () => {
 const main = () => {
     ctx.clearRect(0, 0, global.CANVAS_WIDTH, global.CANVAS_HEIGHT);
     generateObstacles();
+    background.draw(ctx);
     bird.draw(ctx, gameFrame);
     obstacles.forEach(obstacle => obstacle.draw(ctx));
 
@@ -73,6 +76,7 @@ const main = () => {
     }
 
     bird.update(jumpFrame);
+    background.update(gameFrame);
     obstacles.forEach(obstacle => obstacle.update());
     
     jumpFrame = (jumpFrame + 1) % 6000; //Autoreset
