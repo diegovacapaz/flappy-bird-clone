@@ -11,6 +11,8 @@ const background = new Image();
 background.src = "../assets/background.png";
 const floor = new Image();
 floor.src = "../assets/floor.png";
+const numbers = new Image();
+numbers.src = "../assets/numbers.png";
 
 const globalConstants = {
     GRAVITY: 1,
@@ -21,6 +23,7 @@ const globalConstants = {
     BIRD_IMAGE: bird,
     BG_IMAGE: background,
     FLOOR_IMAGE: floor,
+    NUMBERS_IMAGE: numbers
 }
 
 export {globalConstants};

@@ -2,7 +2,8 @@ import Bird from "./bird.js";
 import Obstacle from "./obstacle.js";
 import Background from "./background.js";
 import {globalConstants as global} from "./constants.js";
-import Floor from "./Floor.js";
+import Floor from "./floor.js";
+import Score from "./score.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -13,12 +14,13 @@ const retryButton= document.getElementById("retryButton");
 let jumpFrame = 0;
 let gameFrame = 0;
 let obstacles = [];
-let score = 0;
 let gameOver = false;
 
 let bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
 let background = new Background();
 let floor = new Floor();
+let score = new Score(0);
+
 
 const generateObstacles = () => {
     if(obstacles.length === 0 || obstacles[obstacles.length - 1].x < global.CANVAS_WIDTH / 6) obstacles.push(new Obstacle());
@@ -37,8 +39,8 @@ const checkObstacleCollision = (obstacle) => {
 const checkAndUpdateScore = (obstacle) => {
     if((obstacle.x + obstacle.WIDTH < bird.x) && !obstacle.wasSurpassed){
         obstacle.wasSurpassed = true;
-        score++;
-        scoreboard.innerHTML = score; 
+        score.update();
+        scoreboard.innerHTML = score.value; 
     };
 }
 
@@ -50,8 +52,7 @@ const checkFloorCollision = () => {
 //Reset the game
 const resetGame = () => {
     gameOverScreen.style.display = "none";
-    score = 0;
-    scoreboard.innerHTML = score;
+    score = new Score(0);
     jumpFrame = 0;
     gameFrame = 0;
     gameOver = false;
@@ -78,6 +79,7 @@ const main = () => {
     bird.draw(ctx, gameFrame);
     obstacles.forEach(obstacle => obstacle.draw(ctx));
     floor.draw(ctx);
+    score.draw(ctx);
 
 
     for(let obstacle of obstacles){
