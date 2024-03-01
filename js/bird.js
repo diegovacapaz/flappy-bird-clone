@@ -22,7 +22,9 @@ class Bird {
     }
 
     jump(){
+        global.JUMP_SOUND.load();
         this.lastJumpY = this.y; //Recalculate last jump for star a new jump
+        global.JUMP_SOUND.play();
     }
 
     update(time){

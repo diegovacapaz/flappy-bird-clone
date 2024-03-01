@@ -13,6 +13,12 @@ const floor = new Image();
 floor.src = "../assets/floor.png";
 const numbers = new Image();
 numbers.src = "../assets/numbers.png";
+const point = new Audio();
+point.src = "../assets/point.wav";
+const wing = new Audio();
+wing.src = "../assets/wing.wav";
+const die = new Audio();
+die.src = "../assets/die.wav";
 
 const globalConstants = {
     GRAVITY: 1,
@@ -23,7 +29,10 @@ const globalConstants = {
     BIRD_IMAGE: bird,
     BG_IMAGE: background,
     FLOOR_IMAGE: floor,
-    NUMBERS_IMAGE: numbers
+    NUMBERS_IMAGE: numbers,
+    POINT_SOUND: point,
+    DYING_SOUND: die,
+    JUMP_SOUND: wing
 }
 
 export {globalConstants};

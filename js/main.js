@@ -40,7 +40,7 @@ const checkAndUpdateScore = (obstacle) => {
     if((obstacle.x + obstacle.WIDTH < bird.x) && !obstacle.wasSurpassed){
         obstacle.wasSurpassed = true;
         score.update();
-        scoreboard.innerHTML = score.value; 
+        global.POINT_SOUND.play();
     };
 }
 
@@ -66,6 +66,7 @@ const resetGame = () => {
 
 //Game over
 const showGameOver = () => {
+    global.DYING_SOUND.play();
     gameOverScreen.style.display = "flex";
     gameOver = true;
 }
@@ -109,7 +110,7 @@ main();
 //Event Listeners
 
 document.addEventListener("keydown", (event) => {
-    if (event.code === "Space" && !bird.isJumping) {
+    if (event.code === "Space" && !bird.isJumping && !gameOver) {
         bird.jump();
         bird.isJumping = true;
         jumpFrame = 0;
@@ -117,7 +118,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keyup", (event) => {
-    if (event.code === "Space") {
+    if (event.code === "Space" && !gameOver) {
         bird.isJumping = false;
     }
 });
