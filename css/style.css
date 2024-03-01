@@ -1,3 +1,40 @@
-h1 {
-    color: red;
+body {
+    background-color: #111;
+}
+
+.center_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas {
+    border: #bbb solid 1px;
+    width: 400px;
+    height: 720px;
+}
+
+#game_over {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    top: 40%;
+    color: white;
+    font-size: 40px;
+}
+
+#game_over-img{
+    width: 100%;
+}
+
+#retryButton {
+    width: 50%;
+}
+
+#retry {
+    width: 50%;
+    padding: 5px 0;
 }

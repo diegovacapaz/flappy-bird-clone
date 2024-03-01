@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Bird Clone</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
-    <h1>Hola mundo</h1>
+    <main class="center_container">
+        <canvas id="canvas"></canvas>
+        <div id="game_over">
+            <img id="game-over-img" src="./assets/gameover.png" alt="game over">
+            <img id="retryButton" src="./assets/retry.png" alt="retry">
+        </div>
+    </main>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
