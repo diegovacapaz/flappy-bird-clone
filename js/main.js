@@ -8,7 +8,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const scoreboard = document.getElementById("scoreboard");
 const gameOverScreen= document.getElementById("game_over");
-const retryButton= document.getElementById("retry");
+const retryButton= document.getElementById("retryButton");
 
 let jumpFrame = 0;
 let gameFrame = 0;

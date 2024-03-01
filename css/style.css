@@ -33,6 +33,14 @@ body {
     font-size: 40px;
 }
 
+#game_over-img{
+    width: 100%;
+}
+
+#retryButton {
+    width: 50%;
+}
+
 #retry {
     width: 50%;
     padding: 5px 0;
