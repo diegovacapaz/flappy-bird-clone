@@ -2,8 +2,8 @@ import {globalConstants as global} from "./constants.js";
 
 class Bird {
     constructor(x, y, jumpImpulse) {
-        this.HEIGHT = 30;
-        this.WIDTH = 40;
+        this.HEIGHT = 40;
+        this.WIDTH = 50;
         this.x = x;
         this.y = y;
         this.JUMP_IMPULSE = jumpImpulse; //jump impulse velocity
@@ -14,7 +14,6 @@ class Bird {
     }
 
     draw(ctx, frame){
-        // ctx.fillRect(this.x, this.y, this.WIDTH, this.HEIGHT);
         ctx.drawImage(global.BIRD_IMAGE, 36 * this.sprite, 0, 34, 24, this.x, this.y, this.WIDTH, this.HEIGHT);
         if(frame % this.staggerFrame == 0){
             if(this.sprite < 3) this.sprite++;

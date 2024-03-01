@@ -2,6 +2,7 @@ import Bird from "./bird.js";
 import Obstacle from "./obstacle.js";
 import Background from "./background.js";
 import {globalConstants as global} from "./constants.js";
+import Floor from "./Floor.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -13,9 +14,11 @@ let jumpFrame = 0;
 let gameFrame = 0;
 let obstacles = [];
 let score = 0;
+let gameOver = false;
 
 let bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
 let background = new Background();
+let floor = new Floor();
 
 const generateObstacles = () => {
     if(obstacles.length === 0 || obstacles[obstacles.length - 1].x < global.CANVAS_WIDTH / 6) obstacles.push(new Obstacle());
@@ -39,6 +42,11 @@ const checkAndUpdateScore = (obstacle) => {
     };
 }
 
+//Check the floor collision
+const checkFloorCollision = () => {
+    return (bird.y + bird.HEIGHT) >= floor.y;
+}
+
 //Reset the game
 const resetGame = () => {
     gameOverScreen.style.display = "none";
@@ -46,9 +54,11 @@ const resetGame = () => {
     scoreboard.innerHTML = score;
     jumpFrame = 0;
     gameFrame = 0;
+    gameOver = false;
     obstacles = [];
     generateObstacles();
     background = new Background();
+    floor = new Floor();
     bird = new Bird(0.3 *global.CANVAS_WIDTH, 0.5 * global.CANVAS_HEIGHT, global.BIRD_JUMP_IMPULSE);
     main();
 }
@@ -56,6 +66,7 @@ const resetGame = () => {
 //Game over
 const showGameOver = () => {
     gameOverScreen.style.display = "flex";
+    gameOver = true;
 }
 
 //Main loop
@@ -66,6 +77,8 @@ const main = () => {
     background.draw(ctx);
     bird.draw(ctx, gameFrame);
     obstacles.forEach(obstacle => obstacle.draw(ctx));
+    floor.draw(ctx);
+
 
     for(let obstacle of obstacles){
         checkAndUpdateScore(obstacle);
@@ -74,10 +87,15 @@ const main = () => {
             return;
         }
     }
+    if(checkFloorCollision()){
+        showGameOver();
+        return;
+    }
 
     bird.update(jumpFrame);
     background.update(gameFrame);
     obstacles.forEach(obstacle => obstacle.update());
+    floor.update(gameFrame);
     
     jumpFrame = (jumpFrame + 1) % 6000; //Autoreset
     gameFrame = (gameFrame + 1) % 4000; //Autoreset
@@ -98,6 +116,15 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("keyup", (event) => {
     if (event.code === "Space") {
+        bird.isJumping = false;
+    }
+});
+
+document.addEventListener("click", (event) => {
+    if(!gameOver){
+        bird.isJumping = true;
+        bird.jump();
+        jumpFrame = 0;
         bird.isJumping = false;
     }
 });
