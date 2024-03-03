@@ -2,8 +2,8 @@ import {globalConstants as global} from "./constants.js";
 
 class Bird {
     constructor(x, y, jumpImpulse) {
-        this.HEIGHT = 40;
-        this.WIDTH = 50;
+        this.HEIGHT = Math.floor(global.CANVAS_HEIGHT *  0.055555);
+        this.WIDTH = Math.floor(global.CANVAS_WIDTH *  0.125);
         this.x = x;
         this.y = y;
         this.JUMP_IMPULSE = jumpImpulse; //jump impulse velocity

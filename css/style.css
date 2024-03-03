@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #111;
 }
@@ -7,12 +13,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 #canvas {
     border: #bbb solid 1px;
-    width: 400px;
-    height: 720px;
 }
 
 #game_over {

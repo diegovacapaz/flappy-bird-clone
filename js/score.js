@@ -4,8 +4,8 @@ class Score {
     constructor(score) {
         this.x = 0;
         this.y = 0;
-        this.WIDTH = 24;
-        this.HEIGHT = 36;
+        this.WIDTH = Math.floor(global.CANVAS_WIDTH * 0.09);
+        this.HEIGHT = Math.floor(global.CANVAS_HEIGHT * 0.075);
         this.value = score;
     }
 
@@ -14,34 +14,34 @@ class Score {
         for (let i = 0; i < numbers.length; i++) {
             switch(numbers[i]) {
                 case 0:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 0, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 0, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 1:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 1, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 1, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 2:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 2, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 2, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 3:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 3, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 3, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 4:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 4, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 4, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 5:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 5, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 5, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 6:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 6, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 6, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 7:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 7, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 7, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 8:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 8, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 8, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 case 9:
-                    ctx.drawImage(global.NUMBERS_IMAGE, this.WIDTH * 9, 0, this.WIDTH, this.HEIGHT, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
+                    ctx.drawImage(global.NUMBERS_IMAGE, 24 * 9, 0, 24, 36, (this.x + this.WIDTH) * i, this.y, this.WIDTH, this.HEIGHT);
                     break;
                 default:
                     break;
