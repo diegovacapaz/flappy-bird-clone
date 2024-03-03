@@ -4,7 +4,7 @@ class Floor {
     constructor() {
         this.x = 0;
         this.y = 10/11 * global.CANVAS_HEIGHT;
-        this.v = -1;
+        this.v = -Math.floor(global.CANVAS_WIDTH * 0.0025);
     }
 
     draw(ctx) {
