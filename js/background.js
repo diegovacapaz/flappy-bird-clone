@@ -4,7 +4,7 @@ class Background {
     constructor() {
         this.x = 0;
         this.y = 0;
-        this.v = -1;
+        this.v = -Math.floor(global.CANVAS_WIDTH * 0.0025);
     }
 
     draw(ctx) {
@@ -15,9 +15,6 @@ class Background {
     update(frame){
         if(this.x <= -global.CANVAS_WIDTH) this.x = 0;
         this.x = this.x + this.v;
-    }
-
-    speedUp(){
     }
 }
 

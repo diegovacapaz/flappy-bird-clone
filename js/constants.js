@@ -1,8 +1,10 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const aspectRatio = 16/9;
 
-canvas.width = 400;
-canvas.height = 720;
+canvas.height = window.innerHeight;
+canvas.width = Math.floor(canvas.height / aspectRatio);
+
 const pipes = new Image();
 pipes.src = "../assets/pipes.png";
 const bird = new Image();
@@ -21,10 +23,10 @@ const die = new Audio();
 die.src = "../assets/die.wav";
 
 const globalConstants = {
-    GRAVITY: 1,
+    GRAVITY: Math.floor(canvas.height *  0.0013888),
     CANVAS_WIDTH: canvas.width,
     CANVAS_HEIGHT: canvas.height,
-    BIRD_JUMP_IMPULSE: -16.5,
+    BIRD_JUMP_IMPULSE: - Math.floor(canvas.height *  0.0222222),
     PIPES_IMAGE: pipes,
     BIRD_IMAGE: bird,
     BG_IMAGE: background,
@@ -34,5 +36,4 @@ const globalConstants = {
     DYING_SOUND: die,
     JUMP_SOUND: wing
 }
-
 export {globalConstants};
